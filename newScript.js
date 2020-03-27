@@ -80,47 +80,51 @@ class Calculator {
             return (
                 item.currency === object.currency
                 && item.sumMin <= object.initialAmount
+                && (item.sumMax >= object.initialAmount || item.sumMax === null)
                 && item.termMin <= object.months
                 && item.termMax >= object.months
-                && (item.sumMax >= object.initialAmount || item.sumMax === null)
             )
         })
 
         let filteredBanks = initialFilter.filter(function (item) {
             if (+object.topUp > 0) {
                 return item.canDeposit === true;
-            } else {
-                return item.canDeposit === false;
             }
         });
 
         let bestOptions = [];
+        let maxRate = 0;
 
-        // for (let i in filteredBanks) {
-            let selectBestOptions = filteredBanks.find(item => Math.max(item.incomeType));
-            bestOptions.push(selectBestOptions);
-        //     filteredBanks.splice(filteredBanks.indexOf(selectBestOptions), 1);
-        // }
+        for (let i of filteredBanks) {
+            let selectBestOptions = filteredBanks.find((item) => Math.max(item.incomeType));
+            if (selectBestOptions.incomeType >= maxRate) {
+                bestOptions.push(selectBestOptions);
+                maxRate = selectBestOptions.incomeType;
+            }
+            filteredBanks.splice(filteredBanks.indexOf(selectBestOptions), 1);
+        }
 
         return bestOptions;
     }
 }
 
 class Application {
-    constructor(array) {
-        this.array = array;
+    constructor(createdDeposit, bestOption) {
+        this.createdDeposit = createdDeposit;
+        this.bestOption = bestOption;
     }
-    toCalculate(rawInput) {
+    toCalculate(createdDeposit, bestOption) {
         let results = [];
-        let amount = rawInput.initialAmount;
-        let topUp = rawInput.topUp;
-        let months = rawInput.months;
-        for (let i = 0; i < this.banks.length; i++) {
-            for (let i = 0; i <= months; i++) {
-                let rate = banks[i].incomeType;
+        let amount = createdDeposit.initialAmount;
+        let topUp = createdDeposit.topUp;
+        let months = createdDeposit.months;
+        for (let i of bestOption) {
+            let rate = i.incomeType;
+            for (let i = 0; i < months; i++) {
                 amount = +amount + +topUp + (+amount * +rate / 100);
             }
-            results.push(amount);
+            amount -= +topUp;
+            results.push(+amount.toFixed(2));
         }
         return results;
     }
@@ -133,11 +137,13 @@ let createdDeposit2 = new Deposit(1000, 100, 'USD', 5);
 
 let createdCalculator = new Calculator(bankProducts);
 
-let sortResult = createdCalculator.getBestOption(createdDeposit);
-let sortResult2 = createdCalculator.getBestOption(createdDeposit2);
+let bestOption = createdCalculator.getBestOption(createdDeposit);
+let bestOption2 = createdCalculator.getBestOption(createdDeposit2);
 console.log('First crash test:');
-console.log(sortResult);
+console.log(bestOption);
 console.log('Second crash test:');
-console.log(sortResult2);
+console.log(bestOption2);
 
-let createdApplication = new Application(sortResult);
+let createdApplication = new Application(createdDeposit2, bestOption2);
+let finalResultsOfInvestment = createdApplication.toCalculate(createdDeposit2, bestOption2);
+console.log(finalResultsOfInvestment);
