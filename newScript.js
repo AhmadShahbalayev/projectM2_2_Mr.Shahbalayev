@@ -96,11 +96,11 @@ class Calculator {
 
         let bestOptions = [];
 
-        for (let i in filteredBanks) {
+        // for (let i in filteredBanks) {
             let selectBestOptions = filteredBanks.find(item => Math.max(item.incomeType));
             bestOptions.push(selectBestOptions);
-            filteredBanks.splice(filteredBanks.indexOf(selectBestOptions), 1);
-        }
+        //     filteredBanks.splice(filteredBanks.indexOf(selectBestOptions), 1);
+        // }
 
         return bestOptions;
     }
