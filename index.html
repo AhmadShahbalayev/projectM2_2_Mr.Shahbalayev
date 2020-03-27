@@ -11,24 +11,31 @@
 
 <body>
     <header>
-        <img src="https://www.pashabank.ge/m/i/downloads/logo-en-horizontal.png" alt="pasha-bank-logo">
-        <h1 class="header-of-page"><a href="index.html">Monthly compound interest calculator</a></h1>
+        <h1 class="header-of-page"><a href="index.html">Подбор оптимального вклада</a></h1>
     </header>
     <main>
-        <div class="calculator-body">
-            <p class="calculator-properties">Начальную сумму вклада (₼)</p>
+        <div class="calculator-body" id="calc-body">
+            <p class="calculator-properties">Начальную сумму вклада</p>
             <input type="number" placeholder="Введите сумму вклада" class="input" id="initial-amount-input">
-            <p class="calculator-properties">Сумму ежемесячного пополнения (₼)</p>
+            <p class="calculator-properties">Сумму ежемесячного пополнения</p>
             <input type="number" placeholder="Введите сумму пополнения" class="input" id="top-up-input">
-            <p class="calculator-properties">Процентная ставка (%)</p>
-            <input type="number" placeholder="Введите процентную ставку" class="input" id="interest-rate-input">
             <p class="calculator-properties">Срок вклада (дней)</p>
             <input type="number" placeholder="Введите срок вклада" class="input" id="days-input">
-            <button class="button" id="calculate-button">Рассчитать</button>
-            <p class="input-error" id="error-text"></p>
+            <p class="calculator-properties">Валюта вклада (&#8381; / &#36;)</p>
+            <input type="text" placeholder="Введите валюту вклада" class="input" id="currency-input">
+            <button class="button" id="calculate-button">Подобрать</button>
+            <p id="error-text"></p>
         </div>
+        <table class="result-of-selection">
+            <th>
+                <td>Название банка</td>
+                <td>Вклад</td>
+                <td>Процент</td>
+                <td>Итогoвая сумма</td>
+            </th>
+        </table>
     </main>
-    <script src="script.js"></script>
+    <script src="newScript.js"></script>
 </body>
 
 </html>

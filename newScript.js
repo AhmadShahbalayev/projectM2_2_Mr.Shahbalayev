@@ -1,84 +1,8 @@
-// CLASSES:
-
-class Application {
-    constructor() {
-        this.initialAmountInput = document.getElementById("initial-amount-input");
-        this.topUpInput = document.getElementById("top-up-input");
-        this.currencyInput = document.getElementById("currency-input");
-        this.daysInput = document.getElementById("days-input");
-        this.calculateButton = document.getElementById("calculate-button");
-        this.errorText = document.getElementById("error-text");
-        this.calculateButton.addEventListener("click", this.fillDeposit);
-    }
-    fillDeposit() {
-        if (this.toCheck(+this.initialAmountInput.value, +this.topUpInput.value, this.currencyInput.value, +this.daysInput.value)) {
-            let deposit = new Deposit(+this.initialAmountInput.value, +this.topUpInput.value, this.currencyInput.value, +this.daysInput.value);
-        } else {
-            return console.warn('Неправильный ввод');
-        }
-    }
-    toCheck(cv, tp, cur, d) {
-        if (+this.initialAmountInput.value <= 0 || this.initialAmountInput.value === '') {
-            errorText.innerHTML = '<span class="error-logo">i</span> Вы не правильно ввели "Начальную сумму вклада"!';
-            console.warn('Начальную сумму вклада введен неправильно');
-            return false;
-        }
-        if (+this.topUpInput.value < 0 || this.topUpInput.value === '') {
-            errorText.innerHTML = '<span class="error-logo">i</span> Вы не правильно ввели "Сумму ежемесячного пополнения"!';
-            console.warn('Сумму ежемесячного пополнени введен неправильно');
-            return false;
-        }
-        if (+this.daysInput.value <= 0 || this.daysInput.value === '') {
-            errorText.innerHTML = '<span class="error-logo">i</span> Вы не правильно ввели "Срок вклада"!';
-            console.warn('Срок вклада введен неправильно');
-            return false;
-        }
-        if (this.currencyInput.value === '' || this.currencyInput.value !== 'rub' && this.currencyInput.value !== 'usd') {
-            errorText.innerHTML = '<span class="error-logo">i</span> Валюта может выбран только RUB или USD!';
-            console.warn('Валюта введен неправильно');
-            return false;
-        }
-        errorText.innerHTML = "";
-        return true;
-    }
-}
-
-class Deposit {
-    constructor(cv, tp, cur, d) {
-        this.cv = cv;
-        this.tp = tp;
-        this.cur = cur;
-        this.d = d;
-    }
-}
-
-class BankProduct {
-    constructor(bankName, investName, currency, incomeType, sumMin, sumMax, termMin, termMax, canDeposit) {
-        this.bankName = bankName;
-        this.investName = investName;
-        this.currency = currency;
-        this.incomeType = incomeType;
-        this.sumMin = sumMin;
-        this.sumMax = sumMax;
-        this.termMin = termMin;
-        this.termMax = termMax;
-        this.canDeposit = canDeposit;
-    }
-}
-
-class Calculator extends BankProduct {
-    constructor(bankName, investName, currency) {
-        super(bankName, investName, currency);
-    }
-
-}
-
-// VARIABLES:
-
-
-// DATABASE: 
+// DATABASE:
 
 let bankProducts = [
+    { "bankName": "Совкомбанк", "investName": "Удобный (в долларах)", "currency": "USD", "incomeType": 1, "sumMin": 500, "sumMax": null, "termMin": 3, "termMax": 6, "canDeposit": true },
+    { "bankName": "Паша Банк", "investName": "Онлайн (в долларах)", "currency": "USD", "incomeType": 1, "sumMin": 500, "sumMax": null, "termMin": 3, "termMax": 6, "canDeposit": true },
     { "bankName": "Газпромбанк", "investName": "Ваш успех", "currency": "RUB", "incomeType": 6.22, "sumMin": 50000, "sumMax": null, "termMin": 12, "termMax": 12, "canDeposit": false },
     { "bankName": "Кредит Европа Банк", "investName": "Оптимальный на 2 года", "currency": "RUB", "incomeType": 6.45, "sumMin": 100000, "sumMax": null, "termMin": 24, "termMax": 24, "canDeposit": false },
     { "bankName": "Банк Зенит", "investName": "Праздничный 500+", "currency": "RUB", "incomeType": 6, "sumMin": 30000, "sumMax": null, "termMin": 17, "termMax": 17, "canDeposit": false },
@@ -121,7 +45,6 @@ let bankProducts = [
     { "bankName": "Александровский", "investName": "Черника 19/20", "currency": "RUB", "incomeType": 5.6, "sumMin": 20000, "sumMax": null, "termMin": 3, "termMax": 3, "canDeposit": true },
     { "bankName": "Финанс Бизнес Банк", "investName": "Мандариновый!", "currency": "RUB", "incomeType": 5.6, "sumMin": 50000, "sumMax": null, "termMin": 3, "termMax": 3, "canDeposit": true },
     { "bankName": "ЦентроКредит", "investName": "Доход Плюс", "currency": "USD", "incomeType": 1.15, "sumMin": 5000, "sumMax": null, "termMin": 3, "termMax": 3, "canDeposit": true },
-    { "bankName": "Совкомбанк", "investName": "Удобный (в долларах)", "currency": "USD", "incomeType": 1, "sumMin": 500, "sumMax": null, "termMin": 3, "termMax": 6, "canDeposit": true },
     { "bankName": "Веста", "investName": "Веста - Копилка", "currency": "USD", "incomeType": 1, "sumMin": 10000, "sumMax": null, "termMin": 3, "termMax": 6, "canDeposit": true },
     { "bankName": "Славия", "investName": "Славный Капитал", "currency": "USD", "incomeType": 0.85, "sumMin": 5000, "sumMax": null, "termMin": 3, "termMax": 4, "canDeposit": true },
     { "bankName": "Роскосмосбанк", "investName": "Комфортный", "currency": "USD", "incomeType": 0.8, "sumMin": 500, "sumMax": null, "termMin": 3, "termMax": 6, "canDeposit": true },
@@ -133,3 +56,88 @@ let bankProducts = [
     { "bankName": "Первый Инвестиционный Банк", "investName": "Закон сохранения", "currency": "USD", "incomeType": 1.5, "sumMin": 1000, "sumMax": null, "termMin": 12, "termMax": 12, "canDeposit": true },
     { "bankName": "Новый Век", "investName": "Сберегательный", "currency": "USD", "incomeType": 1.5, "sumMin": 5000, "sumMax": 20000, "termMin": 12, "termMax": 12, "canDeposit": true }
 ];
+
+class Deposit {
+    constructor(initialAmount, topUp, currency, months) {
+        this.initialAmount = initialAmount;
+        this.topUp = topUp;
+        this.currency = currency;
+        this.months = months;
+    }
+}
+
+class BankProduct {
+
+}
+
+class Calculator {
+    constructor(array) {
+        this.array = array;
+    }
+    getBestOption(object) {
+
+        let initialFilter = this.array.filter(function (item) {
+            return (
+                item.currency === object.currency
+                && item.sumMin <= object.initialAmount
+                && item.termMin <= object.months
+                && item.termMax >= object.months
+                && (item.sumMax >= object.initialAmount || item.sumMax === null)
+            )
+        })
+
+        let filteredBanks = initialFilter.filter(function (item) {
+            if (+object.topUp > 0) {
+                return item.canDeposit === true;
+            } else {
+                return item.canDeposit === false;
+            }
+        });
+
+        let bestOptions = [];
+
+        for (let i in filteredBanks) {
+            let selectBestOptions = filteredBanks.find(item => Math.max(item.incomeType));
+            bestOptions.push(selectBestOptions);
+            filteredBanks.splice(filteredBanks.indexOf(selectBestOptions), 1);
+        }
+
+        return bestOptions;
+    }
+}
+
+class Application {
+    constructor(array) {
+        this.array = array;
+    }
+    toCalculate(rawInput) {
+        let results = [];
+        let amount = rawInput.initialAmount;
+        let topUp = rawInput.topUp;
+        let months = rawInput.months;
+        for (let i = 0; i < this.banks.length; i++) {
+            for (let i = 0; i <= months; i++) {
+                let rate = banks[i].incomeType;
+                amount = +amount + +topUp + (+amount * +rate / 100);
+            }
+            results.push(amount);
+        }
+        return results;
+    }
+}
+
+// TESTS:
+
+let createdDeposit = new Deposit(15000, 100, 'RUB', 1);
+let createdDeposit2 = new Deposit(1000, 100, 'USD', 5);
+
+let createdCalculator = new Calculator(bankProducts);
+
+let sortResult = createdCalculator.getBestOption(createdDeposit);
+let sortResult2 = createdCalculator.getBestOption(createdDeposit2);
+console.log('First crash test:');
+console.log(sortResult);
+console.log('Second crash test:');
+console.log(sortResult2);
+
+let createdApplication = new Application(sortResult);
