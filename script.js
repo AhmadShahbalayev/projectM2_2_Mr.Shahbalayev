@@ -200,16 +200,18 @@ class Application {
 
 function toCalculate(object, array) {
     let results = [];
-    let amount = object.initialAmount;
-    let topUp = object.topUp;
-    let months = object.months;
-    for (let i of array) {
-        let rate = i.incomeType;
+    let amount = +object.initialAmount;
+    let topUp = +object.topUp;
+    let months = +object.months;
+    for (let i = 0; i < array.length; i++) {
+        let rate = +array[i].incomeType;
         for (let i = 0; i < months; i++) {
-            amount = +amount + +topUp + (+amount * +rate / 100);
+            amount += (amount * (rate / 100 / 12)) + topUp;
         }
-        amount -= +topUp;
-        results.push(+amount.toFixed(2));
+        amount = Math.round(amount);
+        amount -= topUp;
+        results.push(amount);
+        amount = +object.initialAmount;
     }
     return results;
 }
