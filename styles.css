@@ -92,15 +92,11 @@ a {
     display: none;
 }
 
-tr {
-    width: 100%;
-    text-align: center;
-}
-
 th {
-    width: 20%;
+    padding-bottom:  1%;
+    font-size: 14px;
 }
 
 td {
-    width: 20%;
+    padding: 1%;
 }

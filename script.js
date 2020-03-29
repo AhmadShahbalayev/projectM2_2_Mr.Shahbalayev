@@ -3,12 +3,12 @@
 let bankProducts = [
     { "bankName": "Совкомбанк", "investName": "Удобный (в долларах)", "currency": "USD", "incomeType": 1, "sumMin": 500, "sumMax": null, "termMin": 3, "termMax": 6, "canDeposit": true },
     { "bankName": "Паша Банк", "investName": "Онлайн (в долларах)", "currency": "USD", "incomeType": 1, "sumMin": 500, "sumMax": null, "termMin": 3, "termMax": 6, "canDeposit": true },
+    { "bankName": "Еврофинанс Моснарбанк", "investName": "Пополняемый", "currency": "RUB", "incomeType": 6.75, "sumMin": 1000000, "sumMax": null, "termMin": 12, "termMax": 24, "canDeposit": true },
     { "bankName": "Газпромбанк", "investName": "Ваш успех", "currency": "RUB", "incomeType": 6.22, "sumMin": 50000, "sumMax": null, "termMin": 12, "termMax": 12, "canDeposit": false },
     { "bankName": "Кредит Европа Банк", "investName": "Оптимальный на 2 года", "currency": "RUB", "incomeType": 6.45, "sumMin": 100000, "sumMax": null, "termMin": 24, "termMax": 24, "canDeposit": false },
     { "bankName": "Банк Зенит", "investName": "Праздничный 500+", "currency": "RUB", "incomeType": 6, "sumMin": 30000, "sumMax": null, "termMin": 17, "termMax": 17, "canDeposit": false },
     { "bankName": "Еврофинанс Моснарбанк", "investName": "Классический", "currency": "RUB", "incomeType": 6.95, "sumMin": 30000, "sumMax": null, "termMin": 12, "termMax": 24, "canDeposit": false },
     { "bankName": "Джей энд Ти Банк", "investName": "Магнус-Онлайн", "currency": "RUB", "incomeType": 6.8, "sumMin": 100000, "sumMax": null, "termMin": 6, "termMax": 6, "canDeposit": false },
-    { "bankName": "МТС Банк", "investName": "В вашу пользу", "currency": "RUB", "incomeType": 6.75, "sumMin": 50000, "sumMax": null, "termMin": 12, "termMax": 12, "canDeposit": true },
     { "bankName": "Эс-Би-Ай Банк", "investName": "Свои правила Онлайн", "currency": "RUB", "incomeType": 6.7, "sumMin": 30000, "sumMax": 30000000, "termMin": 24, "termMax": 24, "canDeposit": false },
     { "bankName": "Банк Уралсиб", "investName": "Прогноз отличный", "currency": "RUB", "incomeType": 6.7, "sumMin": 100000, "sumMax": null, "termMin": 37, "termMax": 37, "canDeposit": false },
     { "bankName": "Инвестторгбанк", "investName": "ИТБ-Постоянный доход", "currency": "RUB", "incomeType": 6.6, "sumMin": 50000, "sumMax": null, "termMin": 37, "termMax": 37, "canDeposit": false },
@@ -38,7 +38,6 @@ let bankProducts = [
     { "bankName": "Нацинвестпромбанк", "investName": "Прибыльный", "currency": "RUB", "incomeType": 6.3, "sumMin": 50000, "sumMax": null, "termMin": 12, "termMax": 12, "canDeposit": true },
     { "bankName": "Ишбанк", "investName": "Накопительный", "currency": "RUB", "incomeType": 6.25, "sumMin": 100000, "sumMax": null, "termMin": 12, "termMax": 12, "canDeposit": true },
     { "bankName": "Примсоцбанк", "investName": "Новогодний чулок (333 дня)", "currency": "RUB", "incomeType": 6.2, "sumMin": 10000, "sumMax": null, "termMin": 11, "termMax": 11, "canDeposit": true },
-    { "bankName": "Еврофинанс Моснарбанк", "investName": "Пополняемый", "currency": "RUB", "incomeType": 6.75, "sumMin": 1000000, "sumMax": null, "termMin": 12, "termMax": 24, "canDeposit": true },
     { "bankName": "Евроазиатский Инвестиционный Банк", "investName": "VIP", "currency": "RUB", "incomeType": 6.35, "sumMin": 1000000, "sumMax": null, "termMin": 9, "termMax": 12, "canDeposit": true },
     { "bankName": "Российская Финансовая Корпорация", "investName": "Универсальный", "currency": "RUB", "incomeType": 6, "sumMin": 5000, "sumMax": null, "termMin": 3, "termMax": 3, "canDeposit": true },
     { "bankName": "Московский Кредитный Банк", "investName": "МЕГА Онлайн", "currency": "RUB", "incomeType": 5.8, "sumMin": 1000, "sumMax": null, "termMin": 3, "termMax": 5, "canDeposit": true },
@@ -53,6 +52,7 @@ let bankProducts = [
     { "bankName": "Объединенный Резервный Банк", "investName": "ОРБ-Накопительный (в конце срока)", "currency": "USD", "incomeType": 1.6, "sumMin": 1000, "sumMax": null, "termMin": 12, "termMax": 12, "canDeposit": true },
     { "bankName": "Банк Агора", "investName": "Срочный", "currency": "USD", "incomeType": 1.5, "sumMin": 1000, "sumMax": null, "termMin": 12, "termMax": 12, "canDeposit": true },
     { "bankName": "Тинькофф Банк", "investName": "СмартВклад (с повышенной ставкой)", "currency": "USD", "incomeType": 1.5, "sumMin": 1000, "sumMax": null, "termMin": 12, "termMax": 12, "canDeposit": true },
+    { "bankName": "МТС Банк", "investName": "В вашу пользу", "currency": "RUB", "incomeType": 6.75, "sumMin": 50000, "sumMax": null, "termMin": 12, "termMax": 12, "canDeposit": true },
     { "bankName": "Первый Инвестиционный Банк", "investName": "Закон сохранения", "currency": "USD", "incomeType": 1.5, "sumMin": 1000, "sumMax": null, "termMin": 12, "termMax": 12, "canDeposit": true },
     { "bankName": "Новый Век", "investName": "Сберегательный", "currency": "USD", "incomeType": 1.5, "sumMin": 5000, "sumMax": 20000, "termMin": 12, "termMax": 12, "canDeposit": true }
 ];
@@ -90,15 +90,17 @@ class Calculator {
             return (
                 item.currency.toLowerCase() === object.currency
                 && item.sumMin <= object.initialAmount
+                && (item.sumMax >= object.initialAmount || item.sumMax === null)
                 && item.termMin <= object.months
                 && item.termMax >= object.months
-                && (item.sumMax >= object.initialAmount || item.sumMax === null)
             )
         })
 
         let filteredBanks = initialFilter.filter(function (item) {
-            if (+object.topUp >= 0) {
+            if (+object.topUp > 0) {
                 return item.canDeposit === true;
+            } else if (+object.topUp === 0) {
+                return true;
             }
         });
 
@@ -106,7 +108,7 @@ class Calculator {
         let maxRate = 0;
 
         for (let i of filteredBanks) {
-            let selectBestOptions = filteredBanks.find((item) => Math.max(item.incomeType));
+            let selectBestOptions = filteredBanks.reduce((previous, current) => (previous.incomeType > current.incomeType) ? previous : current);
             if (selectBestOptions.incomeType >= maxRate) {
                 bestOptions.push(selectBestOptions);
                 maxRate = selectBestOptions.incomeType;
@@ -128,21 +130,25 @@ class Checker {
         let errorText = document.getElementById('error-text');
         if (+this.initialAmount <= 0 || this.initialAmount === '') {
             errorText.innerHTML = '<span class="error-logo">i</span> Вы не правильно ввели "Начальную сумму вклада"!';
+            alert('Начальную сумму вклада введен неправильно');
             console.warn('Начальную сумму вклада введен неправильно');
             return false;
         }
         if (+this.topUp < 0 || this.topUp === '') {
             errorText.innerHTML = '<span class="error-logo">i</span> Вы не правильно ввели "Сумму ежемесячного пополнения"!';
+            alert('Сумму ежемесячного пополнени введен неправильно')
             console.warn('Сумму ежемесячного пополнени введен неправильно');
             return false;
         }
         if (+this.months <= 0 || this.months === '') {
             errorText.innerHTML = '<span class="error-logo">i</span> Вы не правильно ввели "Срок вклада"!';
+            alert('Срок вклада введен неправильно');
             console.warn('Срок вклада введен неправильно');
             return false;
         }
         if (this.currency === '' || this.currency !== 'rub' && this.currency !== 'usd') {
             errorText.innerHTML = '<span class="error-logo">i</span> Валюта может выбран только RUB или USD!';
+            alert('Валюта введен неправильно');
             console.warn('Валюта введен неправильно');
             return false;
         }
@@ -162,24 +168,22 @@ class Application {
             let arrayToCalculate = new Calculator(bankProducts);
             let theBestOption = arrayToCalculate.getBestOption(createdDeposit);
             let finalResults = toCalculate(createdDeposit, theBestOption);
-            console.log(theBestOption);
-            console.log(finalResults);
 
             let table = '';
 
             table += '<tr><th>Название банка</th><th>Вклад</th><th>Процент</th><th>Итогoвая сумма</th></tr>';
 
             for (let i = 0; i < theBestOption.length; i++) {
-                table += '<tr>';
-                table += '<td>' + theBestOption[i].bankName + '</td>';
-                table += '<td>' + theBestOption[i].investName + '</td>';
-                table += '<td>' + theBestOption[i].incomeType + '</td>';
-                table += '<td>' + finalResults[i] + '</td>';
+                table += '<tr style="background-color: rgba(255, 255, 255, 0.8); color: rgb(14, 21, 41); font-size: 12px">';
+                table += '<td style="width: 30%">' + theBestOption[i].bankName + '</td>';
+                table += '<td style="width: 30%">' + theBestOption[i].investName + '</td>';
+                table += '<td style="text-align: center; width: 10%">' + theBestOption[i].incomeType + '</td>';
+                table += '<td style="text-align: center; width: 30%">' + finalResults[i] + ' ' + createdDeposit.currency.toUpperCase() + '</td>';
                 table += '</tr>';
             }
 
             if (theBestOption.length === 0) {
-                table = '<td>NO AVALIABLE PRODUCTS</td>';
+                table = '<td style="width: 10%; text-align: center">Нет подходящих вариантов</td>';
             } 
             
             document.getElementById('table').innerHTML = table;
