@@ -61,7 +61,7 @@ class Deposit {
     constructor() {
         this.initialAmount = document.getElementById('initial-amount-input').value;
         this.topUp = document.getElementById('top-up-input').value;
-        this.currency = document.getElementById('currency-input').value;
+        this.currency = document.getElementById('currency-input').value.toLowerCase();
         this.months = document.getElementById('months-input').value;
     }
 }
@@ -78,16 +78,16 @@ class Calculator {
 
         let initialFilter = this.array.filter(function (item) {
             return (
-                item.currency === object.currency
+                item.currency.toLowerCase() === object.currency
                 && item.sumMin <= object.initialAmount
-                && (item.sumMax >= object.initialAmount || item.sumMax === null)
                 && item.termMin <= object.months
                 && item.termMax >= object.months
+                && (item.sumMax >= object.initialAmount || item.sumMax === null)
             )
         })
 
         let filteredBanks = initialFilter.filter(function (item) {
-            if (+object.topUp > 0) {
+            if (+object.topUp >= 0) {
                 return item.canDeposit === true;
             }
         });
@@ -103,20 +103,18 @@ class Calculator {
             }
             filteredBanks.splice(filteredBanks.indexOf(selectBestOptions), 1);
         }
-
         return bestOptions;
     }
 }
 
 class Checker {
-    constructor(createdDeposit) {
-        this.initialAmount = createdDeposit.initialAmount;
-        this.topUp = createdDeposit.topUp;
-        this.currency = createdDeposit.currency;
-        this.months = createdDeposit.months;
+    constructor(object) {
+        this.initialAmount = object.initialAmount;
+        this.topUp = object.topUp;
+        this.currency = object.currency;
+        this.months = object.months;
     }
     toCheck() {
-        return true;
         let errorText = document.getElementById('error-text');
         if (+this.initialAmount <= 0 || this.initialAmount === '') {
             errorText.innerHTML = '<span class="error-logo">i</span> Вы не правильно ввели "Начальную сумму вклада"!';
@@ -133,47 +131,68 @@ class Checker {
             console.warn('Срок вклада введен неправильно');
             return false;
         }
-        this.currency.toLowerCase();
         if (this.currency === '' || this.currency !== 'rub' && this.currency !== 'usd') {
             errorText.innerHTML = '<span class="error-logo">i</span> Валюта может выбран только RUB или USD!';
             console.warn('Валюта введен неправильно');
             return false;
         }
-        errorText.innerHTML = "";
+        errorText.innerHTML = '';
         return true;
     }
 }
 
 class Application {
     constructor() {
-        document.getElementById('calculate-button').addEventListener('click', this.run);
+        this.app = document.getElementById('calculate-button').addEventListener('click', this.getFinalResultsOfInvestment);
     }
-    run(){
+    getFinalResultsOfInvestment() {
         let createdDeposit = new Deposit();
-
         let validator = new Checker(createdDeposit);
-        
         if (validator.toCheck()) {
-            let runCalc = new Calculator(bankProducts);
-            let bestOptions = runCalc.getBestOption(createdDeposit);
-            let finalResult = this.toCalculate(createdDeposit, bestOptions);
-        }
-    }
-    toCalculate(createdDeposit, bestOptions) {
-        let results = [];
-        let amount = createdDeposit.initialAmount;
-        let topUp = createdDeposit.topUp;
-        let months = createdDeposit.months;
-        for (let i of bestOptions) {
-            let rate = i.incomeType;
-            for (let i = 0; i < months; i++) {
-                amount = +amount + +topUp + (+amount * +rate / 100);
+            let arrayToCalculate = new Calculator(bankProducts);
+            let theBestOption = arrayToCalculate.getBestOption(createdDeposit);
+            let finalResults = toCalculate(createdDeposit, theBestOption);
+            console.log(theBestOption);
+            console.log(finalResults);
+
+            let table = '';
+
+            table += '<tr><th>Название банка</th><th>Вклад</th><th>Процент</th><th>Итогoвая сумма</th></tr>';
+
+            for (let i = 0; i < theBestOption.length; i++) {
+                table += '<tr>';
+                table += '<td>' + theBestOption[i].bankName + '</td>';
+                table += '<td>' + createdDeposit.initialAmount + '</td>';
+                table += '<td>' + theBestOption[i].incomeType + '</td>';
+                table += '<td>' + finalResults[i] + '</td>';
+                table += '</tr>';
             }
-            amount -= +topUp;
-            results.push(+amount.toFixed(2));
+            document.getElementById('table').innerHTML = table;
+            document.getElementById('table').style.display = 'block';
+
+            return finalResults;
+
+        } else {
+            return NaN;
         }
-        return results;
     }
+
+}
+
+function toCalculate(object, array) {
+    let results = [];
+    let amount = object.initialAmount;
+    let topUp = object.topUp;
+    let months = object.months;
+    for (let i of array) {
+        let rate = i.incomeType;
+        for (let i = 0; i < months; i++) {
+            amount = +amount + +topUp + (+amount * +rate / 100);
+        }
+        amount -= +topUp;
+        results.push(+amount.toFixed(2));
+    }
+    return results;
 }
 
 class RecommendedBanks {
@@ -184,25 +203,5 @@ class RecommendedBanks {
         this.finalResult = finalResult;
     }
 }
-
-// TESTS:
-
-// let createdDeposit = new Deposit(15000, 100, 'RUB', 1);
-// let createdDeposit2 = new Deposit();
-// console.log(createdDeposit2);
-
-// let createdCalculator = new Calculator(bankProducts);
-
-// let bestOption = createdCalculator.getBestOption(createdDeposit);
-// let bestOption2 = createdCalculator.getBestOption(createdDeposit2);
-// console.log('First crash test:');
-// console.log(bestOption);
-// console.log('Second crash test:');
-// console.log(bestOption2);
-
-// console.log('Potential final amounts: ');
-// let createdApplication = new Application(createdDeposit2, bestOption2);
-// let finalResultsOfInvestment = createdApplication.toCalculate(createdDeposit2, bestOption2);
-// console.log(finalResultsOfInvestment);
 
 new Application();

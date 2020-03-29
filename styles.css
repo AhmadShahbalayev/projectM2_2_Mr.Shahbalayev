@@ -86,12 +86,8 @@ a {
     background-color: rgb(31, 55, 119, 0.9);
     border-radius: 5px;
     border: 1px solid white;
-    text-align: center;
     color: white;
     width: 37%;
     min-width: 480px;
-}
-
-td {
-    font-size: 18px;
+    display: none;
 }
