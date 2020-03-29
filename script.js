@@ -67,7 +67,17 @@ class Deposit {
 }
 
 class BankProduct {
-
+    constructor(bankName, investName, currency, incomeType, sumMin, sumMax, termMin, termMax, canDeposit) {
+        this.bankName = bankName;
+        this.investName = investName;
+        this.currency = currency;
+        this.incomeType = incomeType;
+        this.sumMin = sumMin;
+        this.sumMax = sumMax;
+        this.termMin = termMin;
+        this.termMax = termMax;
+        this.canDeposit = canDeposit;
+    }
 }
 
 class Calculator {
@@ -162,7 +172,7 @@ class Application {
             for (let i = 0; i < theBestOption.length; i++) {
                 table += '<tr>';
                 table += '<td>' + theBestOption[i].bankName + '</td>';
-                table += '<td>' + createdDeposit.initialAmount + '</td>';
+                table += '<td>' + theBestOption[i].investName + '</td>';
                 table += '<td>' + theBestOption[i].incomeType + '</td>';
                 table += '<td>' + finalResults[i] + '</td>';
                 table += '</tr>';
@@ -198,15 +208,6 @@ function toCalculate(object, array) {
         results.push(+amount.toFixed(2));
     }
     return results;
-}
-
-class RecommendedBanks {
-    constructor(name, investName, incomeType, finalResult) {
-        this.name = name;
-        this.investName = investName;
-        this.incomeType = incomeType;
-        this.finalResult = finalResult;
-    }
 }
 
 new Application();
