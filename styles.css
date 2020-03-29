@@ -91,3 +91,16 @@ a {
     min-width: 480px;
     display: none;
 }
+
+tr {
+    width: 100%;
+    text-align: center;
+}
+
+th {
+    width: 20%;
+}
+
+td {
+    width: 20%;
+}

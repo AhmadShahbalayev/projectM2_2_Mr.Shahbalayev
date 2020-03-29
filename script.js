@@ -167,6 +167,11 @@ class Application {
                 table += '<td>' + finalResults[i] + '</td>';
                 table += '</tr>';
             }
+
+            if (theBestOption.length === 0) {
+                table = 'NO AVALIABLE PRODUCTS';
+            } 
+            
             document.getElementById('table').innerHTML = table;
             document.getElementById('table').style.display = 'block';
 
