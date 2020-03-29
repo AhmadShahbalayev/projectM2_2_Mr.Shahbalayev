@@ -169,7 +169,7 @@ class Application {
             }
 
             if (theBestOption.length === 0) {
-                table = 'NO AVALIABLE PRODUCTS';
+                table = '<td>NO AVALIABLE PRODUCTS</td>';
             } 
             
             document.getElementById('table').innerHTML = table;
