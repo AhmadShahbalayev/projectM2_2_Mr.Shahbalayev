@@ -117,6 +117,23 @@ class Calculator {
         }
         return bestOptions;
     }
+    toCalculate(object, array) {
+        let results = [];
+        let amount = +object.initialAmount;
+        let topUp = +object.topUp;
+        let months = +object.months;
+        for (let i = 0; i < array.length; i++) {
+            let rate = +array[i].incomeType;
+            for (let i = 0; i < months; i++) {
+                amount += (amount * (rate / 100 / 12)) + topUp;
+            }
+            amount = Math.round(amount);
+            amount -= topUp;
+            results.push(amount);
+            amount = +object.initialAmount;
+        }
+        return results;
+    }
 }
 
 class Checker {
@@ -167,7 +184,7 @@ class Application {
         if (validator.toCheck()) {
             let arrayToCalculate = new Calculator(bankProducts);
             let theBestOption = arrayToCalculate.getBestOption(createdDeposit);
-            let finalResults = toCalculate(createdDeposit, theBestOption);
+            let finalResults = arrayToCalculate.toCalculate(createdDeposit, theBestOption);
 
             let table = '';
 
@@ -184,8 +201,8 @@ class Application {
 
             if (theBestOption.length === 0) {
                 table = '<td style="width: 10%; text-align: center">Нет подходящих вариантов</td>';
-            } 
-            
+            }
+
             document.getElementById('table').innerHTML = table;
             document.getElementById('table').style.display = 'block';
 
@@ -194,26 +211,7 @@ class Application {
         } else {
             return NaN;
         }
-    }
-
-}
-
-function toCalculate(object, array) {
-    let results = [];
-    let amount = +object.initialAmount;
-    let topUp = +object.topUp;
-    let months = +object.months;
-    for (let i = 0; i < array.length; i++) {
-        let rate = +array[i].incomeType;
-        for (let i = 0; i < months; i++) {
-            amount += (amount * (rate / 100 / 12)) + topUp;
-        }
-        amount = Math.round(amount);
-        amount -= topUp;
-        results.push(amount);
-        amount = +object.initialAmount;
-    }
-    return results;
+    } 
 }
 
 new Application();
