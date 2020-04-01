@@ -1,4 +1,4 @@
-class Deposit {
+class Deposit { // This class creates an object based on the entered data.
     constructor() {
         this.initialAmount = document.getElementById('initial-amount-input').value;
         this.topUp = document.getElementById('top-up-input').value;
@@ -7,7 +7,7 @@ class Deposit {
     }
 }
 
-class BankProduct {
+class BankProduct { // This class creates an object for our bankProducts array. Which is array of objects (bank products).
     constructor(bankName, investName, currency, incomeType, sumMin, sumMax, termMin, termMax, canDeposit) {
         this.bankName = bankName;
         this.investName = investName;
@@ -21,7 +21,7 @@ class BankProduct {
     }
 }
 
-class Calculator {
+class Calculator { // This class takes data from our data.js file, filters it to get best options for user and calculates final amount.
     constructor(array) {
         this.array = array;
     }
@@ -115,7 +115,7 @@ class Checker {
     }
 }
 
-class Application {
+class Application { // This class runs other classes when the button clicked.
     constructor() {
         this.app = document.getElementById('calculate-button').addEventListener('click', this.getFinalResultsOfInvestment);
     }
