@@ -1,4 +1,6 @@
-class Deposit { // This class creates an object based on the entered data.
+// Class Deposit creates an object based on the entered data.
+
+class Deposit {
     constructor() {
         this.initialAmount = document.getElementById('initial-amount-input').value;
         this.topUp = document.getElementById('top-up-input').value;
@@ -7,24 +9,13 @@ class Deposit { // This class creates an object based on the entered data.
     }
 }
 
-class BankProduct { // This class creates an object for our bankProducts array. Which is array of objects (bank products).
-    constructor(bankName, investName, currency, incomeType, sumMin, sumMax, termMin, termMax, canDeposit) {
-        this.bankName = bankName;
-        this.investName = investName;
-        this.currency = currency;
-        this.incomeType = incomeType;
-        this.sumMin = sumMin;
-        this.sumMax = sumMax;
-        this.termMin = termMin;
-        this.termMax = termMax;
-        this.canDeposit = canDeposit;
-    }
-}
+// Class Calculator gets data from our data.js file, filters it to get best options for user and calculates final amount.
 
-class Calculator { // This class takes data from our data.js file, filters it to get best options for user and calculates final amount.
+class Calculator {
     constructor(array) {
         this.array = array;
     }
+
     getBestOption(object) {
 
         let initialFilter = this.array.filter(function (item) {
@@ -58,6 +49,7 @@ class Calculator { // This class takes data from our data.js file, filters it to
         }
         return bestOptions;
     }
+
     toCalculate(object, array) {
         let results = [];
         let amount = +object.initialAmount;
@@ -77,6 +69,8 @@ class Calculator { // This class takes data from our data.js file, filters it to
     }
 }
 
+// Class Checker validates input fields:
+
 class Checker {
     constructor(object) {
         this.initialAmount = object.initialAmount;
@@ -84,6 +78,7 @@ class Checker {
         this.currency = object.currency;
         this.months = object.months;
     }
+
     toCheck() {
         let errorText = document.getElementById('error-text');
         if (+this.initialAmount <= 0 || this.initialAmount === '') {
@@ -115,10 +110,13 @@ class Checker {
     }
 }
 
-class Application { // This class runs other classes when the button clicked.
+// Class Applicaiton runs other classes when the button on page clicked.
+
+class Application {
     constructor() {
         this.app = document.getElementById('calculate-button').addEventListener('click', this.getFinalResultsOfInvestment);
     }
+
     getFinalResultsOfInvestment() {
         let createdDeposit = new Deposit();
         let validator = new Checker(createdDeposit);
@@ -128,7 +126,6 @@ class Application { // This class runs other classes when the button clicked.
             let finalResults = arrayToCalculate.toCalculate(createdDeposit, theBestOption);
 
             let table = '';
-
             table += '<tr><th>Название банка</th><th>Вклад</th><th>Процент</th><th>Итогoвая сумма</th></tr>';
 
             for (let i = 0; i < theBestOption.length; i++) {
