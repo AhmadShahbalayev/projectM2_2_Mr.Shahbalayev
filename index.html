@@ -2,40 +2,40 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-    <title>Kалькулятор для подбора</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+  <title>Kалькулятор для подбора</title>
 </head>
 
 <body>
-    <header>
-        <h1 class="header-of-page"><a href="index.html">Подбор оптимального вклада</a></h1>
-    </header>
-    <main>
-        <div class="calculator-body" id="calc-body">
+  <header>
+    <h1 class="header-of-page"><a href="index.html">Подбор оптимального вклада</a></h1>
+  </header>
+  <main>
+    <div class="calculator-body" id="calc-body">
 
-            <p class="calculator-properties">Начальную сумму вклада</p>
-            <input type="number" placeholder="Введите сумму вклада" class="input" id="initial-amount-input">
+      <p class="calculator-properties">Начальную сумму вклада</p>
+      <input type="number" placeholder="Введите сумму вклада" class="input" id="initial-amount-input">
 
-            <p class="calculator-properties">Сумму ежемесячного пополнения</p>
-            <input type="number" placeholder="Введите сумму пополнения" class="input" id="top-up-input">
+      <p class="calculator-properties">Сумму ежемесячного пополнения</p>
+      <input type="number" placeholder="Введите сумму пополнения" class="input" id="top-up-input">
 
-            <p class="calculator-properties">Срок вклада (months)</p>
-            <input type="number" placeholder="Введите срок вклада" class="input" id="months-input">
+      <p class="calculator-properties">Срок вклада (months)</p>
+      <input type="number" placeholder="Введите срок вклада" class="input" id="months-input">
 
-            <p class="calculator-properties">Валюта вклада (&#8381; / &#36;)</p>
-            <input type="text" placeholder="Введите валюту вклада" class="input" id="currency-input">
+      <p class="calculator-properties">Валюта вклада (&#8381; / &#36;)</p>
+      <input type="text" placeholder="Введите валюту вклада" class="input" id="currency-input">
 
-            <button class="button" id="calculate-button">Подобрать</button>
-            <p id="error-text"></p>
-        </div>
-        <table class="result-of-selection" id="table">
-        </table>
-    </main>
-    <script src="data.js"></script>
-    <script src="script.js"></script>
+      <button class="button" id="calculate-button">Подобрать</button>
+      <p id="error-text"></p>
+    </div>
+    <table class="result-of-selection" id="table">
+    </table>
+  </main>
+  <script src="data.js"></script>
+  <script src="script.js"></script>
 </body>
 
 </html>
